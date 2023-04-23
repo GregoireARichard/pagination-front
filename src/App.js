@@ -115,7 +115,6 @@ function App() {
             <th onClick={() => handleSortChange("rating")}>
               Rating {sortAttr === "rating" && (order === "desc" ? "▼" : "▲")}
             </th>
-            <th>Inventory id</th>
             <th onClick={() => handleSortChange("nbOfRentals")}>
               Number of rentals{" "}
               {sortAttr === "nbOfRentals" && (order === "desc" ? "▼" : "▲")}
@@ -129,7 +128,6 @@ function App() {
               <td>{item.name}</td>
               <td>{item.title}</td>
               <td>{item.rating}</td>
-              <td>{item.inventory_id}</td>
               <td>{item.nbOfRentals}</td>
             </tr>
           ))}

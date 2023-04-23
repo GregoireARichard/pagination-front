@@ -106,8 +106,12 @@ function App() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Rental rate</th>
-            <th>Category</th>
+            <th onClick={() => handleSortChange("film.rental_rate")}>
+              Rental rate {sortAttr === "film.rental_rate" && (order === "desc" ? "▼" : "▲")}
+            </th>
+            <th onClick={() => handleSortChange("name")}>
+              Category {sortAttr === "name" && (order === "desc" ? "▼" : "▲")}
+            </th>
             <th onClick={() => handleSortChange("title")}>
               Title {sortAttr === "title" && (order === "desc" ? "▼" : "▲")}
             </th>

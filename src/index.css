@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9fafb;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+  text-transform: uppercase;
+}
+
+td {
+  background-color: white;
+}
+
+tr:nth-child(even) td {
+  background-color: #f2f2f2;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: #007bff;
+  color: white;
+}
+
+thead th {
+  font-weight: bold;
+}
+
+table {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+th {
+  font-weight: 600;
+}
+
+td {
+  font-weight: 400;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination > * {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination > *:hover {
+  background-color: #ccc;
+}
+
+.pagination > *:first-child {
+  margin-right: 10px;
+}
+
+.pagination > *:last-child {
+  margin-left: 10px;
+}
+
+.pagination > *:not(:first-child):not(:last-child) {
+  display: none;
+}
+
+.pagination > *:first-child,
+.pagination > *:last-child {
+  width: 40px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
+.pagination.disabled > * {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.pagination.disabled > *:hover {
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination > * {
+  width: 40px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.pagination > *:hover {
+  background-color: #ccc;
+}
+
+.pagination > *:first-child {
+  margin-right: 30px;
+}
+
+.pagination > *:last-child {
+  margin-left: 30px;
+}
+
+.pagination > *:not(:first-child):not(:last-child) {
+  display: none;
+}
+
+.pagination > *:first-child,
+.pagination > *:last-child {
+  width: 40px;
+  font-weight: bold;
+}
+
+.pagination > *:nth-child(2n+1) {
+  background-color: #f2f2f2;
+}
+
+.pagination > *:first-child,
+.pagination > *:last-child,
+.pagination > *:nth-child(2n+1) {
+  display: block;
+}

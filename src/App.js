@@ -9,25 +9,28 @@ function App() {
   const [limit, setLimit] = useState(10);
   const [order, setOrder] = useState("desc");
   const [sortAttr, setSortAttr] = useState("title");
-  const url = process.env.REACT_APP_URL
+  const url = process.env.REACT_APP_URL;
+  const [offset, setOffset] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${url}?order=${order}&sortAttr=${sortAttr}`
+        `${url}?pageSize=${itemsPerPage}&offset=${offset}&order=${order}&sortAttr=${sortAttr}`
       );
       setData(result.data);
     };
     fetchData();
-  }, [currentPage, limit, order, sortAttr]);
-
+  }, [itemsPerPage, offset, order, sortAttr]);
   const handlePageChange = (page) => {
     if (page < 1) {
       setCurrentPage(1);
+      setOffset(offset <= 0 ? 0 : offset - itemsPerPage);
     } else if (page > totalPages) {
       setCurrentPage(totalPages);
+      setOffset(offset <= 0 ? itemsPerPage : itemsPerPage + offset);
     } else {
       setCurrentPage(page);
     }
+    // setOffset(offset == 0 ? itemsPerPage : itemsPerPage + offset)
   };
 
   const handleLimitChange = (e) => {
@@ -46,7 +49,10 @@ function App() {
     setCurrentPage(1);
   };
 
-  const currentItems = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const currentItems = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
@@ -64,7 +70,12 @@ function App() {
           key={i}
           active={i === currentPage}
           onClick={() => handlePageChange(i)}
-          style={{ borderRadius: "0", minWidth: "40px", minHeight: "40px", margin: "5px" }}
+          style={{
+            borderRadius: "0",
+            minWidth: "40px",
+            minHeight: "40px",
+            margin: "5px",
+          }}
         >
           {i}
         </Pagination.Item>
@@ -76,7 +87,12 @@ function App() {
     <Pagination
       disabled={currentPage === 1}
       onClick={() => handlePageChange(currentPage - 1)}
-      style={{ borderRadius: "0", minWidth: "40px", minHeight: "40px", margin: "5px" }}
+      style={{
+        borderRadius: "0",
+        minWidth: "40px",
+        minHeight: "40px",
+        margin: "5px",
+      }}
     />
   );
 
@@ -84,7 +100,12 @@ function App() {
     <Pagination
       disabled={currentPage === totalPages}
       onClick={() => handlePageChange(currentPage + 1)}
-      style={{ borderRadius: "0", minWidth: "40px", minHeight: "40px", margin: "5px" }}
+      style={{
+        borderRadius: "0",
+        minWidth: "40px",
+        minHeight: "40px",
+        margin: "5px",
+      }}
     />
   );
 
@@ -102,12 +123,16 @@ function App() {
           style={{ marginLeft: "5px" }}
         />
       </div>
-      <p>Page {currentPage} of : {Math.ceil(data.length / limit)}</p>
+      <p>
+        Page {Math.ceil(1+ offset/10)} of : {Math.ceil(1000 / limit)}
+      </p>
       <Table striped bordered hover>
         <thead>
           <tr>
             <th onClick={() => handleSortChange("film.rental_rate")}>
-              Rental rate {sortAttr === "film.rental_rate" && (order === "desc" ? "▼" : "▲")}
+              Rental rate{" "}
+              {sortAttr === "film.rental_rate" &&
+                (order === "desc" ? "▼" : "▲")}
             </th>
             <th onClick={() => handleSortChange("name")}>
               Category {sortAttr === "name" && (order === "desc" ? "▼" : "▲")}
@@ -136,7 +161,6 @@ function App() {
             </tr>
           ))}
         </tbody>
-        
       </Table>
       <Pagination
         className="justify-content-center"
